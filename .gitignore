@@ -1,0 +1,5 @@
+IgnoreThis/
+
+*.DS_Store*
+
+*.tfmodel*
