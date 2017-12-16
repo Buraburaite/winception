@@ -25,5 +25,18 @@ def load_image(filename, max_size=None):
     # Convert to numpy floating-point array.
     return np.float32(image)
 
+def save_image(image, filename):
+    # Ensure the pixel-values are between 0 and 255.
+    image = np.clip(image, 0.0, 255.0)
+
+    # Convert to bytes.
+    image = image.astype(np.uint8)
+
+    # Write the image-file in jpeg-format.
+    with open(filename, 'wb') as file:
+        Image.fromarray(image).save(file, 'png')
+
 goblin = load_image('images/goblin.png')
 print(f'Image is a {len(goblin[0])}x{len(goblin)} array of rgba arrays')
+
+save_image(goblin, 'images/new-goblin.png')
