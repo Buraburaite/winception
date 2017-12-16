@@ -34,7 +34,7 @@ def save_image(image, filename):
 
     # Write the image-file in jpeg-format.
     with open(filename, 'wb') as file:
-        Image.fromarray(image).save(file, 'png')
+        Image.fromarray(image).save(file, 'jpeg')
 
 # def plot_image_big(image):  # this is jupyter notebook thing I think
 #     # Ensure the pixel-values are between 0 and 255.
@@ -46,11 +46,11 @@ def save_image(image, filename):
 #     # Convert to a PIL-image and display it.
 #     display(Image.fromarray(image))
 
-goblin = load_image('images/goblin.png')
-print(f'Image is a {len(goblin[0])}x{len(goblin)} array of rgba arrays')
+whale = load_image('images/whale.jpg')
+print(f'Image is a {len(whale[0])}x{len(whale)} array of rgba arrays')
 
-# for row in goblin:
-#     for pixel in row:
-#         pixel[1] = 1.0
+for row in whale:
+    for pixel in row:
+        pixel[0] = 255.0
 
-# save_image(goblin, 'images/red-goblin.png')
+save_image(whale, 'images/red-whale.png')
