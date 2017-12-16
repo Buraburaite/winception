@@ -36,7 +36,21 @@ def save_image(image, filename):
     with open(filename, 'wb') as file:
         Image.fromarray(image).save(file, 'png')
 
+# def plot_image_big(image):  # this is jupyter notebook thing I think
+#     # Ensure the pixel-values are between 0 and 255.
+#     image = np.clip(image, 0.0, 255.0)
+#
+#     # Convert pixels to bytes.
+#     image = image.astype(np.uint8)
+#
+#     # Convert to a PIL-image and display it.
+#     display(Image.fromarray(image))
+
 goblin = load_image('images/goblin.png')
 print(f'Image is a {len(goblin[0])}x{len(goblin)} array of rgba arrays')
 
-save_image(goblin, 'images/new-goblin.png')
+# for row in goblin:
+#     for pixel in row:
+#         pixel[1] = 1.0
+
+# save_image(goblin, 'images/red-goblin.png')
