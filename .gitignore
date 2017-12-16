@@ -3,3 +3,5 @@ IgnoreThis/
 *.DS_Store*
 
 *.tfmodel*
+
+*.png
