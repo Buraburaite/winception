@@ -20,7 +20,7 @@ def load_image(filename, max_size=None):
         size = size.astype(int)
 
         # Resize the image.
-        image = image.resize(size, PIL.Image.LANCZOS)
+        image = image.resize(size, Image.LANCZOS)
 
     # Convert to numpy floating-point array.
     return np.float32(image)
@@ -46,11 +46,11 @@ def save_image(image, filename):
 #     # Convert to a PIL-image and display it.
 #     display(Image.fromarray(image))
 
-whale = load_image('images/whale.jpg')
-print(f'Image is a {len(whale[0])}x{len(whale)} array of rgba arrays')
-
-for row in whale:
-    for pixel in row:
-        pixel[0] = 255.0
-
-save_image(whale, 'images/red-whale.png')
+# whale = load_image('images/whale.jpg')
+# print(f'Image is a {len(whale[0])}x{len(whale)} array of rgba arrays')
+#
+# for row in whale:
+#     for pixel in row:
+#         pixel[0] = 255.0
+#
+# save_image(whale, 'images/red-whale.png')

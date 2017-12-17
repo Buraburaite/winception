@@ -1,7 +1,10 @@
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
-import PIL.Image
+# import PIL.Image as Image
+from imageFunctions import *
+from lossFunctions import *
+from vgg16 import VGG16
 
 #relative weights - normalized.
 #style should have more weight than content
@@ -33,7 +36,7 @@ def style_transfer(content_image, style_image,
     # in each call of this function, because we will add
     # operations to the graph so it can grow very large
     # and run out of RAM if we keep using the same instance.
-    model = vgg16.VGG16()
+    model = VGG16()
 
     # Create a TensorFlow-session.
     session = tf.InteractiveSession(graph=model.graph)
@@ -154,18 +157,36 @@ def style_transfer(content_image, style_image,
             msg = "Weight Adj. for Content: {0:.2e}, Style: {1:.2e}, Denoise: {2:.2e}"
             print(msg.format(adj_content_val, adj_style_val, adj_denoise_val))
 
-            #in larger resolution
-            # Plot the content-, style- and mixed-images.
-            plot_images(content_image=content_image,
-                        style_image=style_image,
-                        mixed_image=mixed_image)
-
-    print()
-    print("Final image:")
-    plot_image_big(mixed_image)
+        save_image(mixed_image, f'images/whale_iter{i}.jpg')
 
     # Close the TensorFlow session to release its resources.
     session.close()
 
     # Return the mixed-image.
     return mixed_image
+
+content_filename = 'images/whale.jpg'
+content_image = load_image(content_filename, max_size=None)
+
+style_filename = 'images/wave.jpg'
+style_image = load_image(style_filename, max_size=300)
+
+content_layer_ids = [4]
+
+# The VGG16-model has 13 convolutional layers.
+# This selects all those layers as the style-layers.
+# This is somewhat slow to optimize.
+style_layer_ids = list(range(13))
+
+# You can also select a sub-set of the layers, e.g. like this:
+# style_layer_ids = [1, 2, 3, 4]
+
+img = style_transfer(content_image=content_image,
+                     style_image=style_image,
+                     content_layer_ids=content_layer_ids,
+                     style_layer_ids=style_layer_ids,
+                     weight_content=1.5,
+                     weight_style=10.0,
+                     weight_denoise=0.3,
+                     num_iterations=60,
+                     step_size=10.0)
