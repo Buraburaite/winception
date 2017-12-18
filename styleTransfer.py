@@ -32,6 +32,9 @@ def style_transfer(content_image, style_image,
     step_size: Step-size for the gradient in each iteration.
     """
 
+    # javi stuff
+    tPixels = []
+
     # Create an instance of the VGG16-model. This is done
     # in each call of this function, because we will add
     # operations to the graph so it can grow very large
@@ -157,7 +160,7 @@ def style_transfer(content_image, style_image,
             msg = "Weight Adj. for Content: {0:.2e}, Style: {1:.2e}, Denoise: {2:.2e}"
             print(msg.format(adj_content_val, adj_style_val, adj_denoise_val))
 
-        save_image(mixed_image, f'images/version2/whale_iter{i+1}.jpg')
+        save_image(mixed_image, f'images/version2/whale_iter{i+1}.png')
 
     # Close the TensorFlow session to release its resources.
     session.close()
@@ -165,10 +168,10 @@ def style_transfer(content_image, style_image,
     # Return the mixed-image.
     return mixed_image
 
-content_filename = 'images/goblin.png'
+content_filename = 'images/whale.png'
 content_image = load_image(content_filename, max_size=None)
 
-style_filename = 'images/fire.png'
+style_filename = 'images/wave.png'
 style_image = load_image(style_filename, max_size=300)
 
 content_layer_ids = [4]
