@@ -34,7 +34,7 @@ def save_image(image, filename):
 
     # Write the image-file in jpeg-format.
     with open(filename, 'wb') as file:
-        Image.fromarray(image).save(file, 'jpeg')
+        Image.fromarray(image).save(file, 'png')
 
 # def plot_image_big(image):  # this is jupyter notebook thing I think
 #     # Ensure the pixel-values are between 0 and 255.
