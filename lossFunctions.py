@@ -100,7 +100,7 @@ def gram_matrix(tensor):
 
     # Get the number of feature channels for the input tensor,
     # which is assumed to be from a convolutional layer with 4-dim.
-    num_channels = int(shape[4])
+    num_channels = int(shape[3])
 
     #-1 means whatever number makes the data fit
     # Reshape the tensor so it is a 2-dim matrix. This essentially
